@@ -1,4 +1,4 @@
 import "./styles/tokens.css"
 
-export * from "./components/Button"
+export * from "./components/PlainButton"
 export * from "./components/Card"

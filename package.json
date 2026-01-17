@@ -6,11 +6,16 @@
     "dist"
   ],
   "main": "./dist/mezmer-ui.umd.cjs",
-  "module": "./dist/mezmer-ui.es.js",
+  "module": "./dist/mezmer-ui.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/mezmer-ui.es.js",
+      "import": "./dist/mezmer-ui.js",
       "require": "./dist/mezmer-ui.umd.cjs"
+    },
+    "./dist/mezmer-ui.css": {
+      "import": "./dist/mezmer-ui.css",
+      "require": "./dist/mezmer-ui.css"
     }
   },
   "scripts": {
