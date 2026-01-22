@@ -1,1 +1,1 @@
-export * from "./PlainCard"
+export * from "./Card"

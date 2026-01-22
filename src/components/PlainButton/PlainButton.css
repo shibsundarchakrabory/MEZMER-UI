@@ -1,36 +1,29 @@
 :root {
-
-
---bg-primary-color: #000000;
---secondary-color: #ffffff;
+  --bg-primary-color: #000000;
+  --secondary-color: #ffffff;
   --bg-color: #ffffff;
+  --text-color: #ffffff;
 
+  /** spacing variables */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
 
---text-color: #ffffff;
-
-
-/** spacing variables */
---space-xs:4px;
---space-sm:8px;
---space-md:16px;
---space-lg:24px;
---space-xl:32px;
---space-2xl:40px;
---space-3xl:48px;
-
-
-/* *border colors */
---border-primery:#212121;
---border-radius-xs: 4px;
---border-radius-sm: 8px;
---border-radius-md: 12px;
---border-radius-lg: 16px;
---border-radius-xl: 20px;
---border-radius-2xl: 24px;
---border-radius-50-Pencent: 50%;
-
-
+  /* *border colors */
+  --border-primary: #212121;
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  --border-radius-2xl: 24px;
+  --border-radius-50-Pencent: 50%;
 }
+
 *,
 *::before,
 *::after {
@@ -39,29 +32,55 @@
   box-sizing: border-box;
 }
 
-
 html,
 body {
   width: 100%;
   height: 100%;
   font-family: 'Arial', sans-serif;
   background-color: var(--bg-primary-color);
-color: var(--text-color);
- line-height: 1.5;
+  color: var(--text-color);
+  line-height: 1.5;
 }
-
+/* .btn-light{
+  background: #ffffff;
+  color: #000000;
+} */
 .plain-button {
-    background-color: var(--bg-color);
-    color: var(--bg-primary-color);
-    border: 1px solid var(--border-primery);
-    border-radius: var(--border-radius-sm);
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid transparent;
 }
 
-.plain-button:hover {
-    background-color: var(--bg-primary-color);
-    color: var(--secondary-color);
+/* Primary Variant */
+.plain-button--primary {
+  background-color: var(--bg-color);
+  color: var(--bg-primary-color);
+  border-color: var(--border-primary);
 }
 
+.plain-button--primary:hover {
+  background-color: var(--bg-primary-color);
+  color: var(--secondary-color);
+}
+
+/* Secondary Variant (Ghost) */
+.plain-button--secondary {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.plain-button--secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scale:hover {
+  transform: scale(1.05);
+}
