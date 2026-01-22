@@ -39,7 +39,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </div>
       <h3>Input</h3>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        <Input icon="true" ></Input>
+        <Input label={"Name"} theme='light' ></Input>
+        <Input label={"Name"} theme='dark' ></Input>
       </div>
     </div>
   </React.StrictMode>

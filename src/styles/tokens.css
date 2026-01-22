@@ -45,8 +45,10 @@ body {
 .btn-light {
     background: #ffffff;
     color: #000000;
+    /* border: 1px solid #000000; */
 }
 .btn-dark {
     background: #212121;
     color: #ffffff;
+    /* border: 2px solid #ffffff; */
 }
