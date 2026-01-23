@@ -1,1 +1,1 @@
-export * from "./ShadowButton"
+export { default } from "./ShadowButton";

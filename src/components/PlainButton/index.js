@@ -1,1 +1,1 @@
-export * from "./PlainButton"
+export { default } from "./PlainButton";

@@ -1,30 +1,23 @@
+import React from "react";
+import PropTypes from "prop-types";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
 import styles from "./Card.module.css";
 
-let h = "Heahing withe the title prop";
-
-let p = "write a para here with the para prop";
-
-export function Card({
-    pic = "",
-    title = h,
-    para = p,
+export default function Card({
+    pic,
+    title,
+    para,
     theme = "default",
     ...props
 }) {
-    let insertImg = "Add image with pic prop";
-
-    let className = `${styles.card} `;
-
-    className += ThemeFunctionConponent(theme);
-
-    
+    const themeClass = ThemeFunctionConponent(theme);
+    const className = `${styles.card} ${themeClass}`;
 
     return (
         <div className={className} {...props}>
-            {insertImg && (
+            {pic && (
                 <div className={styles.imgdiv}>
-                    <img src={pic} alt="IMAGE" />
+                    <img src={pic} alt={title || "Card image"} />
                 </div>
             )}
             <div className={styles.heading}>
@@ -36,3 +29,10 @@ export function Card({
         </div>
     );
 }
+
+Card.propTypes = {
+  pic: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  para: PropTypes.string.isRequired,
+  theme: PropTypes.string,
+};

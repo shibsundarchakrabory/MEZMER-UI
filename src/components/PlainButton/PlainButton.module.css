@@ -1,0 +1,39 @@
+.plainButton {
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid transparent;
+}
+
+/* Primary Variant */
+.primary {
+  background-color: var(--bg-color);
+  color: var(--bg-primary-color);
+  border-color: var(--border-primary);
+}
+
+.primary:hover {
+  background-color: var(--bg-primary-color);
+  color: var(--secondary-color);
+}
+
+/* Secondary Variant (Ghost) */
+.secondary {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scale:hover {
+  transform: scale(1.05);
+}

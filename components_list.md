@@ -236,11 +236,11 @@ System-level extensibility.
 If you are building a first version of a UI library, start with:
 
 - `✅ Button`
-- `Input`
+- `✅ Card`
+- `✅ Input`
 - `Select`
 - `Checkbox`
 - `Radio`
-- `✅ Card`
 - `Modal`
 - `Alert`
 - `Text` / `Heading`

@@ -1,16 +1,18 @@
-import "./PlainButton.css";
-import "../../styles/tokens.css"
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./PlainButton.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
 
-export function PlainButton({
+export default function PlainButton({
   children,
-  btntype = "default",
+  btntype = "primary",
   btntheme = "default",
   ...props
 }) {
-  let className = `plain-button btn-${btntype} `;
-
-  className += ThemeFunctionConponent(btntheme)
+  const themeClass = ThemeFunctionConponent(btntheme);
+  const typeClass = styles[btntype] || styles.primary;
+  
+  const className = `${styles.plainButton} ${typeClass} ${themeClass}`;
 
   return (
     <button className={className} {...props}>
@@ -18,5 +20,11 @@ export function PlainButton({
     </button>
   );
 }
+
+PlainButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  btntype: PropTypes.oneOf(["primary", "secondary"]),
+  btntheme: PropTypes.string,
+};
 
 
