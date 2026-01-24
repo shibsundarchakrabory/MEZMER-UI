@@ -20,8 +20,18 @@
     width: 100%;
     max-height: 150px;
     overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid var(--border-color);
     border-radius: 4px;
+}
+
+.DropDownList::-webkit-scrollbar {
+    width: 6px;
+    background: #00000000;
+}
+.DropDownList::-webkit-scrollbar-thumb {
+    background-color: #5bff71;
+    border-radius: 3px;
 }
 
 .DropDownListAnimateAdd {
@@ -50,4 +60,9 @@
 
 .DropDownListItemRemove {
     display: none;
+}
+
+.DropDownListItemActive {
+    background-color: var(--primary-color); /* Example active style */
+    color: var(--on-primary-color); /* Example active text color */
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./DropDown.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
 
-function DropDown({ theme = "default" }) {
+function DropDown({ theme = "default" , options=[], selected, onSelect, label="Select"} ) {
     const [open, setopen] = useState(false);
 
     // 1. Base Styles
@@ -24,13 +24,24 @@ function DropDown({ theme = "default" }) {
                 className={selectStyle}
                 onClick={() => setopen(!open)}
             >
-                Select
+                {selected ? options.find(opt => opt.value === selected)?.label : label}
             </button>
             <div className={listContainerStyle}>
                 <ul>
-                    <li className={itemStyle}>Item 1</li>
-                    <li className={itemStyle}>Item 2</li>
-                    <li className={itemStyle}>Item 3</li>
+                   {
+                    options.map((option, index) => (
+                        <li 
+                            key={index} 
+                            className={`${itemStyle} ${selected === option.value ? styles.DropDownListItemActive : ''}`}
+                            onClick={() => {
+                                onSelect(option);
+                                setopen(false);
+                            }}
+                        >
+                            {option.label}
+                        </li>
+                    ))
+                   }
                 </ul>
             </div>
         </div>

@@ -238,13 +238,13 @@ If you are building a first version of a UI library, start with:
 - `✅ Button`
 - `✅ Card`
 - `✅ Input`
-- `Select`
-- `Checkbox`
-- `Radio`
-- `Modal`
-- `Alert`
-- `Text` / `Heading`
+- `✅ Select`
 - `Container` / `Flex`
+- `Text` / `Heading`
+- `Checkbox`
+- `Modal`
+- `Radio`
+- `Alert`
 - `Tabs`
 - `Tooltip`
 - `Spinner`

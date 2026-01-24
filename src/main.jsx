@@ -20,6 +20,11 @@ const App = () => {
     { value: '1', label: 'Option 1' },
     { value: '2', label: 'Option 2' },
     { value: '3', label: 'Option 3' },
+    { value: '3', label: 'Option 3' },
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' },
+    { value: '3', label: 'Option 3' },
   ];
 
   return (
@@ -60,6 +65,10 @@ const App = () => {
           onSelect={(option) => setSelectedOption(option.value)}
           label="Select (Dark)"
         />
+      </div>
+      <h2>Dropdowns</h2>
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent:"center", width: '600px' }}>
+        
       </div>
     </div>
   );
