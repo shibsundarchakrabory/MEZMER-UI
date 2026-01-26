@@ -5,4 +5,5 @@ export { default as ShadowButton } from "./components/ShadowButton";
 export { default as Card } from "./components/Card";
 export { default as Input } from "./components/Input";
 export { default as DropDown } from "./components/DropDown";
-export { default as Container } from "./components/ColomnContainer"
+export { default as Container } from "./components/ColomnContainer";
+export { default as Modal } from "./components/Modal"

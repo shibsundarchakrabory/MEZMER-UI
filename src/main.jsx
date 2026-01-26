@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import {
-    PlainButton,
-    Card,
-    ShadowButton,
+    // PlainButton,
+    // Card,
+    // ShadowButton,
     Container,
+    DropDown,
+    Input,
+    Modal,
 } from "./index";
 
 // import assate1 from "./assets/assate.jpg"
-import Input from "./components/Input/Input";
-import DropDown from "./components/DropDown/DropDown";
 // import assate2 from "./assets/assate2.png"
 
 // const p = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure fuga ipsam unde ratione libero quae repellendus nam rem ducimus, beatae ipsa, odit consectetur! Eius, ducimus quidem deserunt veniam natus nesciunt!"
@@ -103,6 +104,24 @@ const App = () => {
                   <div>jksdfhsjk</div>
                   <div>jksdfhsjk</div>
                 </Container>
+            
+            </div>
+            <h2>Modal</h2>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "600px",
+                }}
+            >
+               {/* <Modal theme="dark" >
+                <h1>jkdsklf</h1> 
+                <h1>jkdsklf</h1>
+                <h1>jkdsklf</h1>
+               </Modal> */}
+            
             </div>
         </div>
     );
