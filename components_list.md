@@ -241,7 +241,7 @@ If you are building a first version of a UI library, start with:
 - `✅ Select`
 - `✅ Container` / `Flex`
 - `✅ Modal`
-- `Text` / `Heading`
+- `✅ Text` / `Heading`
 - `Checkbox`
 - `Radio`
 - `Alert`
