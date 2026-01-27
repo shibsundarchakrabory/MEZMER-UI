@@ -9,6 +9,7 @@ import {
     DropDown,
     Input,
     Modal,
+    Text,
 } from "./index";
 
 // import assate1 from "./assets/assate.jpg"
@@ -36,7 +37,26 @@ const App = () => {
     return (
         <div className="body">
             <h1>Mezmer UI Components</h1>
-
+            <h2>text</h2>
+            <div
+                style={{
+                    
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+               <Text textType="h1" theme="light">
+                h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
+               </Text>
+               <Text textType="p" theme="dark">
+                h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
+               </Text>
+            
+            </div>
             <h2>Input Fields</h2>
             <div
                 style={{
@@ -88,7 +108,7 @@ const App = () => {
                     label="Select (Dark)"
                 />
             </div>
-            <h2>Dropdowns</h2>
+            <h2>container</h2>
             <div
                 style={{
                     display: "flex",
@@ -123,6 +143,7 @@ const App = () => {
                </Modal> */}
             
             </div>
+            
         </div>
     );
 };

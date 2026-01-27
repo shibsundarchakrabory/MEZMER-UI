@@ -31,10 +31,10 @@
 .btn-light {
     background: #ffffff;
     color: #000000;
-    /* border: 1px solid #000000; */
+    border-radius: 10px;
 }
 .btn-dark {
     background: #212121;
     color: #ffffff;
-    /* border: 2px solid #ffffff; */
+    border-radius: 10px;
 }
