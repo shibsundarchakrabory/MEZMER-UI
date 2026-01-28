@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import plainButtonStyles from "../PlainButton/PlainButton.module.css"; // Import styles from PlainButton
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 
 export default function ShadowButton({
   children,

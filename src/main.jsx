@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import {
+    Checkbox,
     // PlainButton,
     // Card,
     // ShadowButton,
@@ -37,6 +38,21 @@ const App = () => {
     return (
         <div className="body">
             <h1>Mezmer UI Components</h1>
+            <h2>text</h2>
+            <div
+                style={{
+                    
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+              <Checkbox/>
+            
+            </div>
             <h2>text</h2>
             <div
                 style={{

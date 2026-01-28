@@ -7,4 +7,5 @@ export { default as Input } from "./components/Input";
 export { default as DropDown } from "./components/DropDown";
 export { default as Container } from "./components/ColomnContainer";
 export { default as Modal } from "./components/Modal";
-export { default as Text } from "./components/Text"
+export { default as Text } from "./components/Text";
+export { default as Checkbox } from "./components/Checkbox";

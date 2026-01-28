@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Card.module.css";
 
 export default function Card({

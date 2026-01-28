@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./PlainButton.module.css";
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+
+
 
 export default function PlainButton({
   children,

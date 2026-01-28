@@ -1,0 +1,4 @@
+.comtainer{
+    display: flex;
+    flex-direction: column;
+}

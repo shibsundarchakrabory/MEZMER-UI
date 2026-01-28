@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Text.module.css";
 
 function Text({ children, theme = "default", textType = "h1", ...props }) {

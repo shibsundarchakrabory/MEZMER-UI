@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./DropDown.module.css";
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 
 function DropDown({ theme = "default" , options=[], selected, onSelect, label="Select"} ) {
     const [open, setopen] = useState(false);

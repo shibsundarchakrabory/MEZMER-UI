@@ -4,6 +4,7 @@ function ThemeFunctionConponent(btntheme) {
   } else if (btntheme === "dark") {
     return "btn-dark";
   }
+  return "";
 }
 
 export default ThemeFunctionConponent;

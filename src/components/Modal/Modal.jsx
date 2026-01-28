@@ -1,5 +1,5 @@
 // import React from 'react'
-import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent";
+import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Modal.module.css";
 function Modal({ children, theme = "default", ...props }) {
     let className = `${styles.madal} `;
