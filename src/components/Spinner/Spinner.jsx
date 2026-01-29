@@ -3,30 +3,46 @@ import styles from "./Spinner.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 
 function Spinner({ size = "md", theme = "default" }) {
-  let spinnerClassName = `${styles.spinner} `;
-  spinnerClassName += ThemeFunctionConponent(theme);
+    let spinnerContainerClassName = `${styles.spinner} `;
 
-  // Apply size-specific styles
-  switch (size) {
-    case "sm":
-      spinnerClassName += ` ${styles.sm}`;
-      break;
-    case "lg":
-      spinnerClassName += ` ${styles.lg}`;
-      break;
-    case "md":
-    default:
-      spinnerClassName += ` ${styles.md}`;
-      break;
-  }
+    switch (size) {
+        case "sm":
+            spinnerContainerClassName += ` ${styles.sm}`;
+            break;
+        case "lg":
+            spinnerContainerClassName += ` ${styles.lg}`;
+            break;
+        case "md":
+        default:
+            spinnerContainerClassName += ` ${styles.md}`;
+            break;
+    }
+    let spinnerbg = ThemeFunctionConponent(theme);
+    // let spinnerDivbg = ThemeFunctionConponent()
+    // Create dot class based on theme
+    const getDotClassName = () => {
+        let className = styles.dot;
+        if (theme === "light") {
+            className += ` ${styles.dotLight}`;
+        } else if (theme === "dark") {
+            className += ` ${styles.dotDark}`;
+        }
+        return className;
+    };
 
-  return (
-    <div className={spinnerClassName}>
-      <div className={styles.dot1}></div>
-      <div className={styles.dot2}></div>
-      <div className={styles.dot3}></div>
-    </div>
-  );
+    const baseDotClass = getDotClassName();
+
+    return (
+        <div className={`${spinnerContainerClassName}`}>
+            <div
+                className={`${baseDotClass} ${styles.dot1} ${spinnerbg}`}
+            ></div>
+            <div
+                className={`${baseDotClass} ${styles.dot2} ${spinnerbg}`}
+            ></div>
+            <div className={`${baseDotClass} ${spinnerbg}`}></div>
+        </div>
+    );
 }
 
 export default Spinner;
