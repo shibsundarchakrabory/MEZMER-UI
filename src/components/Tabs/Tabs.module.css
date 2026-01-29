@@ -1,0 +1,84 @@
+.tabsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px; /* Example max-width */
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabList {
+  display: flex;
+  border-bottom: 1px solid var(--border-primery);
+}
+
+.tabButton {
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.tabButton:hover {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.tabButton.active {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+  border-bottom: 2px solid var(--secondary-color); /* Highlight active tab */
+}
+
+.tabContent {
+  padding: var(--space-lg);
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+}
+
+/* Theme-specific overrides */
+.btn-light .tabButton {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.btn-light .tabButton:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-light .tabButton.active {
+  background-color: var(--bg-primary-color);
+  color: var(--secondary-color);
+  border-bottom-color: var(--bg-primary-color);
+}
+
+.btn-light .tabContent {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.btn-dark .tabButton {
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+}
+
+.btn-dark .tabButton:hover {
+  background-color: #333333;
+}
+
+.btn-dark .tabButton.active {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+  border-bottom-color: var(--secondary-color);
+}
+
+.btn-dark .tabContent {
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+}

@@ -9,3 +9,8 @@ export { default as Container } from "./components/ColomnContainer";
 export { default as Modal } from "./components/Modal";
 export { default as Text } from "./components/Text";
 export { default as Checkbox } from "./components/Checkbox";
+export { default as Radio } from "./components/Radio";
+export { default as Alert } from "./components/Alert";
+export { default as Tabs } from "./components/Tabs";
+export { default as Tooltip } from "./components/Tooltip";
+export { default as Spinner } from "./components/Spinner";

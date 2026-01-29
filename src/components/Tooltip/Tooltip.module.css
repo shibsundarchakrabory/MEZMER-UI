@@ -1,0 +1,39 @@
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipContent {
+  position: absolute;
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 1000;
+  bottom: 125%; /* Position above the children */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tooltipContainer:hover .tooltipContent,
+.tooltipContainer:focus-within .tooltipContent {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Theme-specific overrides */
+.btn-light .tooltipContent {
+  background-color: var(--secondary-color);
+  color: var(--bg-primary-color);
+}
+
+.btn-dark .tooltipContent {
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+}

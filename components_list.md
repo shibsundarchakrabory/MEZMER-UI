@@ -242,12 +242,12 @@ If you are building a first version of a UI library, start with:
 - `✅ Container` / `Flex`
 - `✅ Modal`
 - `✅ Text` / `Heading`
-- `Checkbox`
-- `Radio`
-- `Alert`
-- `Tabs`
-- `Tooltip`
-- `Spinner`
+- `✅ Checkbox`
+- `✅ Radio`
+- `✅ Alert`
+- `✅ Tabs`
+- `✅ Tooltip`
+- `✅ Spinner`
 
 ---
 

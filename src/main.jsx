@@ -11,6 +11,11 @@ import {
     Input,
     Modal,
     Text,
+    Radio, // Added Radio
+    Alert, // Added Alert
+    Tabs, // Added Tabs
+    Tooltip, // Added Tooltip
+    Spinner, // Added Spinner
 } from "./index";
 
 // import assate1 from "./assets/assate.jpg"
@@ -34,14 +39,42 @@ const App = () => {
         { value: "3", label: "Option 3" },
         { value: "3", label: "Option 3" },
     ];
+    const Options = [
+        { value: "1", label: "Option 1" },
+        { value: "2", label: "Option 2" },
+        { value: "3", label: "Option 3" },
+       
+    ];
+    
+    const [checkedItems, setCheckedItems] = useState({});
 
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        setCheckedItems({ ...checkedItems, [name]: checked });
+    };
+
+    // State for Radio
+    const [selectedRadioOption, setSelectedRadioOption] = useState("radio1");
+    const radioOptions = [
+        { value: "radio1", label: "Radio Option 1" },
+        { value: "radio2", label: "Radio Option 2" },
+        { value: "radio3", label: "Radio Option 3" },
+    ];
+
+    // Tabs data
+    const tabData = [
+        { label: "Tab 1", content: <p>Content for Tab 1</p> },
+        { label: "Tab 2", content: <p>Content for Tab 2</p> },
+        { label: "Tab 3", content: <p>Content for Tab 3</p> },
+    ];
+    
+    // const numbers = [1, 2, 3, 4, 5, 6, 7]
     return (
         <div className="body">
             <h1>Mezmer UI Components</h1>
-            <h2>text</h2>
+            <h2>Checkbox</h2>
             <div
                 style={{
-                    
                     display: "flex",
                     flexDirection: "column",
                     gap: "1rem",
@@ -50,13 +83,23 @@ const App = () => {
                     width: "100vw",
                 }}
             >
-              <Checkbox/>
-            
+                {Options.map((option) => (
+                    <Checkbox
+                        key={option.value}
+                        theme="dark"
+                        label={option.label}
+                        name={option.value}
+                        value={option.value}
+                        checked={checkedItems[option.value] || false}
+                        onChange={handleCheckboxChange}
+                    />
+                ))}
+                <p>Checked items: {JSON.stringify(checkedItems)}</p>
             </div>
-            <h2>text</h2>
+
+            <h2>Radio Buttons</h2>
             <div
                 style={{
-                    
                     display: "flex",
                     flexDirection: "column",
                     gap: "1rem",
@@ -65,13 +108,105 @@ const App = () => {
                     width: "100vw",
                 }}
             >
-               <Text textType="h1" theme="light">
-                h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
-               </Text>
-               <Text textType="p" theme="dark">
-                h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
-               </Text>
-            
+                {radioOptions.map((option) => (
+                    <Radio
+                        key={option.value}
+                        theme="dark"
+                        label={option.label}
+                        name="radioGroup"
+                        value={option.value}
+                        checked={selectedRadioOption === option.value}
+                        onChange={(e) => setSelectedRadioOption(e.target.value)}
+                    />
+                ))}
+                <p>Selected Radio: {selectedRadioOption}</p>
+            </div>
+
+            <h2>Alerts</h2>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+                <Alert message="This is an info alert!" type="info" theme="light" />
+                <Alert message="This is a success alert!" type="success" theme="dark" />
+                <Alert message="This is a warning alert!" type="warning" theme="light" />
+                <Alert message="This is an error alert!" type="error" theme="dark" onClose={() => console.log("Error alert closed")} />
+            </div>
+
+            <h2>Tabs</h2>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+                <Tabs tabs={tabData} theme="dark" />
+            </div>
+
+            <h2>Tooltip</h2>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+                <Tooltip content="This is a tooltip!" theme="dark">
+                    <button>Hover me</button>
+                </Tooltip>
+                <Tooltip content="Another tooltip example" theme="light">
+                    <span>Focus or hover over this text</span>
+                </Tooltip>
+            </div>
+
+            <h2>Spinner</h2>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+                <Spinner size="sm" theme="dark" />
+                <Spinner size="md" theme="light" />
+                <Spinner size="lg" theme="dark" />
+            </div>
+
+            <h2>text</h2>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100vw",
+                }}
+            >
+                <Text textType="h1" theme="light">
+                    h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks
+                    djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
+                </Text>
+                <Text textType="p" theme="dark">
+                    h sdfklh kcfjdkl fkls dk ldjfdkl ;sjfld;sjfklsdjf; lks
+                    djflsdkjfl;sdkfjsdkl;fjsdklfj sd;klfjsdkljf
+                </Text>
             </div>
             <h2>Input Fields</h2>
             <div
@@ -135,12 +270,11 @@ const App = () => {
                 }}
             >
                 <Container direction="row">
-                  <div>jksdfhsjk</div>
-                  <div>jksdfhsjk</div>
-                  <div>jksdfhsjk</div>
-                  <div>jksdfhsjk</div>
+                    <div>jksdfhsjk</div>
+                    <div>jksdfhsjk</div>
+                    <div>jksdfhsjk</div>
+                    <div>jksdfhsjk</div>
                 </Container>
-            
             </div>
             <h2>Modal</h2>
             <div
@@ -152,14 +286,12 @@ const App = () => {
                     width: "600px",
                 }}
             >
-               {/* <Modal theme="dark" >
+                {/* <Modal theme="dark" >
                 <h1>jkdsklf</h1> 
                 <h1>jkdsklf</h1>
                 <h1>jkdsklf</h1>
                </Modal> */}
-            
             </div>
-            
         </div>
     );
 };
@@ -169,3 +301,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <App />
     </React.StrictMode>
 );
+

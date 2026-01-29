@@ -1,4 +1,19 @@
-.comtainer{
-    display: flex;
-    flex-direction: column;
+.container{
+  display: flex;
+  flex-direction: column;
+  /* background: #e7a0a0; */
+  gap: 50px;
+}
+
+.checkbox{
+  width:  20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
