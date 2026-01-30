@@ -15,7 +15,8 @@ import {
     Alert, // Added Alert
     Tabs, // Added Tabs
     Tooltip, // Added Tooltip
-    Spinner, // Added Spinner
+    Spinner,
+    Card, // Added Spinner
 } from "./index";
 
 // import assate1 from "./assets/assate.jpg"
@@ -291,6 +292,18 @@ const App = () => {
                 <h1>jkdsklf</h1>
                 <h1>jkdsklf</h1>
                </Modal> */}
+            </div>
+            <h2>Modal</h2>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "600px",
+                }}
+            >
+               <Card theme="dark" />
             </div>
         </div>
     );
