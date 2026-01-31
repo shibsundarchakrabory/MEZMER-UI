@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Tooltip.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { TooltipProps } from "./types";
 
-function Tooltip({ children, content, theme = "default" }) {
+const Tooltip: React.FC<TooltipProps> = ({ children, content, theme = "default" }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   let tooltipClassName = `${styles.tooltip} `;
@@ -27,6 +28,6 @@ function Tooltip({ children, content, theme = "default" }) {
       )}
     </div>
   );
-}
+};
 
 export default Tooltip;

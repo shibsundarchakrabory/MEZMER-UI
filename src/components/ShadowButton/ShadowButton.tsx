@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import plainButtonStyles from "../PlainButton/PlainButton.module.css"; // Import styles from PlainButton
+import styles from "../PlainButton/PlainButton.module.css"; // Import styles from PlainButton
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { ShadowButtonProps } from "./types";
 
-export default function ShadowButton({
+const ShadowButton: React.FC<ShadowButtonProps> = ({
   children,
   btntype = "primary",
   btntheme = "default",
@@ -11,12 +11,12 @@ export default function ShadowButton({
   spread = "10px",
   inside = false,
   ...props
-}) {
+}) => {
   const themeClass = ThemeFunctionConponent(btntheme);
-  const typeClass = plainButtonStyles[btntype] || plainButtonStyles.primary;
-  
-  const className = `${plainButtonStyles.plainButton} ${typeClass} ${themeClass}`;
-  
+  const typeClass = styles[btntype] || styles.primary;
+
+  const className = `${styles.plainButton} ${typeClass} ${themeClass}`;
+
   const shadowInset = inside ? "inset" : "";
   const shadowStyle = {
     boxShadow: `${shadowInset} 0px 0px ${spread} ${shadowColor}`,
@@ -27,14 +27,7 @@ export default function ShadowButton({
       {children}
     </button>
   );
-}
-
-ShadowButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  btntype: PropTypes.oneOf(["primary", "secondary"]),
-  btntheme: PropTypes.string,
-  shadowColor: PropTypes.string,
-  spread: PropTypes.string,
-  inside: PropTypes.bool,
 };
+
+export default ShadowButton;
 

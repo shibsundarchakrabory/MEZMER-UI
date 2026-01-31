@@ -1,7 +1,9 @@
-// import React from 'react'
+import React from "react";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Modal.module.css";
-function Modal({ children, theme = "default", ...props }) {
+import { ModalProps } from "./types";
+
+const Modal: React.FC<ModalProps> = ({ children, theme = "default", ...props }) => {
     let className = `${styles.madal} `;
 
     className += ThemeFunctionConponent(theme);
@@ -11,6 +13,6 @@ function Modal({ children, theme = "default", ...props }) {
             <div className={className}>{children}</div>
         </div>
     );
-}
+};
 
 export default Modal;

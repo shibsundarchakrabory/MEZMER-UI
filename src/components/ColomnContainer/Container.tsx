@@ -1,15 +1,20 @@
-import styles from "./Container.module.css"
+import styles from "./Container.module.css";
+import { ContainerProps } from "./types";
+import React from "react";
 
-function Container({children,direction="column", ...props}){
-
-  const containerDirection =  direction === "row" ? styles.Rowcontainer : styles.Columncontainer;
-
+const Container: React.FC<ContainerProps> = ({
+  children,
+  direction = "column",
+  ...props
+}) => {
+  const containerDirection =
+    direction === "row" ? styles.Rowcontainer : styles.Columncontainer;
 
   return (
     <div className={containerDirection} {...props}>
-        {children}
+      {children}
     </div>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;

@@ -1,8 +1,9 @@
 import React from 'react';
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Text.module.css";
+import { TextProps } from "./types";
 
-function Text({ children, theme = "default", textType = "h1", ...props }) {
+const Text: React.FC<TextProps> = ({ children, theme = "default", textType = "h1", ...props }) => {
     const Tag = textType; 
 
     let className = `${styles.container} `; 
@@ -13,6 +14,6 @@ function Text({ children, theme = "default", textType = "h1", ...props }) {
             {children}
         </Tag>
     );
-}
+};
 
 export default Text;

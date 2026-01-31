@@ -24,13 +24,18 @@ import {
 
 // const p = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure fuga ipsam unde ratione libero quae repellendus nam rem ducimus, beatae ipsa, odit consectetur! Eius, ducimus quidem deserunt veniam natus nesciunt!"
 
-const App = () => {
+interface Option {
+    value: string;
+    label: string;
+}
+
+const App: React.FC = () => {
     // State for Input
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState<string>("");
 
     // State for DropDown
-    const [selectedOption, setSelectedOption] = useState(null);
-    const dropdownOptions = [
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const dropdownOptions: Option[] = [
         { value: "1", label: "Option 1" },
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
@@ -40,30 +45,30 @@ const App = () => {
         { value: "3", label: "Option 3" },
         { value: "3", label: "Option 3" },
     ];
-    const Options = [
+    const Options: Option[] = [
         { value: "1", label: "Option 1" },
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
        
     ];
     
-    const [checkedItems, setCheckedItems] = useState({});
+    const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
 
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = event.target;
         setCheckedItems({ ...checkedItems, [name]: checked });
     };
 
     // State for Radio
-    const [selectedRadioOption, setSelectedRadioOption] = useState("radio1");
-    const radioOptions = [
+    const [selectedRadioOption, setSelectedRadioOption] = useState<string>("radio1");
+    const radioOptions: Option[] = [
         { value: "radio1", label: "Radio Option 1" },
         { value: "radio2", label: "Radio Option 2" },
         { value: "radio3", label: "Radio Option 3" },
     ];
 
     // Tabs data
-    const tabData = [
+    const tabData: { label: string; content: React.ReactNode }[] = [
         { label: "Tab 1", content: <p>Content for Tab 1</p> },
         { label: "Tab 2", content: <p>Content for Tab 2</p> },
         { label: "Tab 3", content: <p>Content for Tab 3</p> },
@@ -117,7 +122,7 @@ const App = () => {
                         name="radioGroup"
                         value={option.value}
                         checked={selectedRadioOption === option.value}
-                        onChange={(e) => setSelectedRadioOption(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedRadioOption(e.target.value)}
                     />
                 ))}
                 <p>Selected Radio: {selectedRadioOption}</p>
@@ -168,7 +173,7 @@ const App = () => {
                 <Tooltip content="This is a tooltip!" theme="dark">
                     <button>Hover me</button>
                 </Tooltip>
-                <Tooltip content="Another tooltip example" theme="light">
+                <Tooltip content={<span>Another tooltip example</span>} theme="light">
                     <span>Focus or hover over this text</span>
                 </Tooltip>
             </div>
@@ -224,14 +229,14 @@ const App = () => {
                     label="Name (Light)"
                     theme="light"
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
                 />
                 <Input
                     id="name-dark"
                     label="Name (Dark)"
                     theme="dark"
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
                 />
             </div>
 
@@ -249,14 +254,14 @@ const App = () => {
                     theme="light"
                     options={dropdownOptions}
                     selected={selectedOption}
-                    onSelect={(option) => setSelectedOption(option.value)}
+                    onSelect={(option: Option) => setSelectedOption(option.value)}
                     label="Select (Light)"
                 />
                 <DropDown
                     theme="dark"
                     options={dropdownOptions}
                     selected={selectedOption}
-                    onSelect={(option) => setSelectedOption(option.value)}
+                    onSelect={(option: Option) => setSelectedOption(option.value)}
                     label="Select (Dark)"
                 />
             </div>

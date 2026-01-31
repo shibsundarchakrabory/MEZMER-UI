@@ -1,4 +1,4 @@
-function ThemeFunctionConponent(btntheme) {
+function ThemeFunctionConponent(btntheme: string): string {
   if (btntheme === "light") {
     return " btn-light";
   } else if (btntheme === "dark") {

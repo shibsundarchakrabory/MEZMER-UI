@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Alert.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { AlertProps } from "./types";
 
-function Alert({ message, type = "info", theme = "default", onClose }) {
+const Alert: React.FC<AlertProps> = ({
+  message,
+  type = "info",
+  theme = "default",
+  onClose,
+}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) {
@@ -46,6 +52,6 @@ function Alert({ message, type = "info", theme = "default", onClose }) {
       )}
     </div>
   );
-}
+};
 
 export default Alert;

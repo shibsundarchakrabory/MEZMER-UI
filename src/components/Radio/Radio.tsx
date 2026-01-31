@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Radio.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { RadioProps } from "./types";
 
-function Radio({
+const Radio: React.FC<RadioProps> = ({
   theme = "default",
   label,
   name,
@@ -10,7 +11,7 @@ function Radio({
   checked,
   onChange,
   disabled,
-}) {
+}) => {
   let containerClassName = `${styles.container} `;
   containerClassName += ThemeFunctionConponent(theme);
 
@@ -30,6 +31,6 @@ function Radio({
       </label>
     </div>
   );
-}
+};
 
 export default Radio;

@@ -1,15 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
 import styles from "./Card.module.css";
+import { CardProps } from "./types";
 
-export default function Card({
+const Card: React.FC<CardProps> = ({
     pic,
     title,
     para,
     theme = "default",
     ...props
-}) {
+}) => {
     const themeClass = ThemeFunctionConponent(theme);
     const className = `${styles.card} ${themeClass}`;
 
@@ -30,9 +30,4 @@ export default function Card({
     );
 }
 
-Card.propTypes = {
-  pic: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  para: PropTypes.string.isRequired,
-  theme: PropTypes.string,
-};
+export default Card;

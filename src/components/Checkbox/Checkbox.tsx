@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Checkbox.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { CheckboxProps } from "./types";
 
-function Checkbox({
+const Checkbox: React.FC<CheckboxProps> = ({
   theme = "default",
   label,
   onChange,
@@ -10,10 +11,10 @@ function Checkbox({
   disabled,
   name,
   value,
-}) {
+}) => {
   const [isChecked, setIsChecked] = useState(checked || false);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newCheckedState = !isChecked;
     setIsChecked(newCheckedState);
     if (onChange) {
@@ -41,6 +42,6 @@ function Checkbox({
       </div>
     </div>
   );
-}
+};
 
 export default Checkbox;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Tabs.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { TabsProps, Tab } from "./types";
 
-function Tabs({ tabs, theme = "default" }) {
+const Tabs: React.FC<TabsProps> = ({ tabs, theme = "default" }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]?.label || "");
 
   let containerClassName = `${styles.tabsContainer} `;
@@ -11,7 +12,7 @@ function Tabs({ tabs, theme = "default" }) {
   return (
     <div className={containerClassName}>
       <div className={styles.tabList}>
-        {tabs.map((tab) => (
+        {tabs.map((tab: Tab) => (
           <button
             key={tab.label}
             className={`${styles.tabButton} ${
@@ -24,10 +25,10 @@ function Tabs({ tabs, theme = "default" }) {
         ))}
       </div>
       <div className={styles.tabContent}>
-        {tabs.find((tab) => tab.label === activeTab)?.content}
+        {tabs.find((tab: Tab) => tab.label === activeTab)?.content}
       </div>
     </div>
   );
-}
+};
 
 export default Tabs;

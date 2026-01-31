@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Spinner.module.css";
 import ThemeFunctionConponent from "../../Functions/ThemeFunctionConponent/ThemeFunctionConponent.js";
+import { SpinnerProps } from "./types";
 
-function Spinner({ size = "md", theme = "default" }) {
+const Spinner: React.FC<SpinnerProps> = ({ size = "md", theme = "default" }) => {
     let spinnerContainerClassName = `${styles.spinner} `;
 
     switch (size) {
@@ -43,6 +44,6 @@ function Spinner({ size = "md", theme = "default" }) {
             <div className={`${baseDotClass} ${spinnerbg}`}></div>
         </div>
     );
-}
+};
 
 export default Spinner;
