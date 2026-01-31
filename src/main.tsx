@@ -346,7 +346,7 @@ const App: React.FC = () => {
                     theme="dark"
                     pic="https://via.placeholder.com/150"
                     title="Card Title"
-                    para="Card Paragraph"
+                    para="Card Paragraph dskkljfklsdjflksdhfjksdfhlsdkjfhlksdfhksdhfjksdfhjksdfhjksdhflkjsdhflshfoiwehruihrihewfbeuifherufhehnfuwehfuerhfoneruio"
                 />
             </div>
         </div>

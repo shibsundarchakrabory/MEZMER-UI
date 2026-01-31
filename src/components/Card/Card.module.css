@@ -10,21 +10,21 @@
     align-items: center;
 }
 
-.imgdiv{
-    display: inline-block;
+.imgdiv {
+    /* display: none; */ /* Remove this to show images */
     background: #000;
     border-radius: 20px;
-    min-height: 0px;
-    width: 100%;
-    object-fit:contain;
     overflow: hidden;
-
+    width: 100%;
+    /* Set a specific height or aspect ratio */
+    aspect-ratio: 16 / 9; /* or use height: 200px; */
 }
 
-img{
-    /* min-height: 0px; */
+.imgdiv img {
     width: 100%;
     height: 100%;
+    object-fit: cover; /* or 'contain' depending on your needs */
+    display: block; /* Removes extra spacing below image */
 }
 
 .heading{
@@ -32,11 +32,18 @@ img{
     width: 100%;
     margin: 10px 0;
 }
-
-.para{
+.para {
     /* background: #000; */
     height: 40%;
     width: 100%;
-    
+    overflow: hidden; /* Prevents overflow */
+    word-wrap: break-word; /* Breaks long words */
+    overflow-wrap: break-word; /* Modern property */
+    /* If you want to handle very long strings without spaces: */
+    word-break: break-word; /* Breaks words if needed */
 }
 
+.para p {
+    margin: 0; /* Remove default paragraph margins if needed */
+    line-height: 1.5; /* Improve readability */
+}
