@@ -34,7 +34,7 @@ const App: React.FC = () => {
     const [inputValue, setInputValue] = useState<string>("");
 
     // State for DropDown
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
     const dropdownOptions: Option[] = [
         { value: "1", label: "Option 1" },
         { value: "2", label: "Option 2" },
@@ -49,18 +49,22 @@ const App: React.FC = () => {
         { value: "1", label: "Option 1" },
         { value: "2", label: "Option 2" },
         { value: "3", label: "Option 3" },
-       
     ];
-    
-    const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const [checkedItems, setCheckedItems] = useState<{
+        [key: string]: boolean;
+    }>({});
+
+    const handleCheckboxChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
         const { name, checked } = event.target;
         setCheckedItems({ ...checkedItems, [name]: checked });
     };
 
     // State for Radio
-    const [selectedRadioOption, setSelectedRadioOption] = useState<string>("radio1");
+    const [selectedRadioOption, setSelectedRadioOption] =
+        useState<string>("radio1");
     const radioOptions: Option[] = [
         { value: "radio1", label: "Radio Option 1" },
         { value: "radio2", label: "Radio Option 2" },
@@ -73,7 +77,7 @@ const App: React.FC = () => {
         { label: "Tab 2", content: <p>Content for Tab 2</p> },
         { label: "Tab 3", content: <p>Content for Tab 3</p> },
     ];
-    
+
     // const numbers = [1, 2, 3, 4, 5, 6, 7]
     return (
         <div className="body">
@@ -122,7 +126,9 @@ const App: React.FC = () => {
                         name="radioGroup"
                         value={option.value}
                         checked={selectedRadioOption === option.value}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedRadioOption(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            setSelectedRadioOption(e.target.value)
+                        }
                     />
                 ))}
                 <p>Selected Radio: {selectedRadioOption}</p>
@@ -139,10 +145,27 @@ const App: React.FC = () => {
                     width: "100vw",
                 }}
             >
-                <Alert message="This is an info alert!" type="info" theme="light" />
-                <Alert message="This is a success alert!" type="success" theme="dark" />
-                <Alert message="This is a warning alert!" type="warning" theme="light" />
-                <Alert message="This is an error alert!" type="error" theme="dark" onClose={() => console.log("Error alert closed")} />
+                <Alert
+                    message="This is an info alert!"
+                    type="info"
+                    theme="light"
+                />
+                <Alert
+                    message="This is a success alert!"
+                    type="success"
+                    theme="dark"
+                />
+                <Alert
+                    message="This is a warning alert!"
+                    type="warning"
+                    theme="light"
+                />
+                <Alert
+                    message="This is an error alert!"
+                    type="error"
+                    theme="dark"
+                    onClose={() => console.log("Error alert closed")}
+                />
             </div>
 
             <h2>Tabs</h2>
@@ -173,7 +196,10 @@ const App: React.FC = () => {
                 <Tooltip content="This is a tooltip!" theme="dark">
                     <button>Hover me</button>
                 </Tooltip>
-                <Tooltip content={<span>Another tooltip example</span>} theme="light">
+                <Tooltip
+                    content={<span>Another tooltip example</span>}
+                    theme="light"
+                >
                     <span>Focus or hover over this text</span>
                 </Tooltip>
             </div>
@@ -229,14 +255,18 @@ const App: React.FC = () => {
                     label="Name (Light)"
                     theme="light"
                     value={inputValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setInputValue(e.target.value)
+                    }
                 />
                 <Input
                     id="name-dark"
                     label="Name (Dark)"
                     theme="dark"
                     value={inputValue}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setInputValue(e.target.value)
+                    }
                 />
             </div>
 
@@ -254,14 +284,18 @@ const App: React.FC = () => {
                     theme="light"
                     options={dropdownOptions}
                     selected={selectedOption}
-                    onSelect={(option: Option) => setSelectedOption(option.value)}
+                    onSelect={(option: Option) =>
+                        setSelectedOption(option.value)
+                    }
                     label="Select (Light)"
                 />
                 <DropDown
                     theme="dark"
                     options={dropdownOptions}
                     selected={selectedOption}
-                    onSelect={(option: Option) => setSelectedOption(option.value)}
+                    onSelect={(option: Option) =>
+                        setSelectedOption(option.value)
+                    }
                     label="Select (Dark)"
                 />
             </div>
@@ -298,7 +332,7 @@ const App: React.FC = () => {
                 <h1>jkdsklf</h1>
                </Modal> */}
             </div>
-            <h2>Modal</h2>
+            <h2>card</h2>
             <div
                 style={{
                     display: "flex",
@@ -308,15 +342,23 @@ const App: React.FC = () => {
                     width: "600px",
                 }}
             >
-               <Card theme="dark" />
+                <Card
+                    theme="dark"
+                    pic="https://via.placeholder.com/150"
+                    title="Card Title"
+                    para="Card Paragraph"
+                />
             </div>
         </div>
     );
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+    throw new Error("Root element not found!");
+}
+ReactDOM.createRoot(rootElement as Element).render(
     <React.StrictMode>
         <App />
     </React.StrictMode>
 );
-

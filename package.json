@@ -21,9 +21,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/mezmer-ui.es.js",
-      "require": "./dist/mezmer-ui.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/mezmer-ui.umd.js"
     },
     "./style.css": "./dist/mezmer-ui.css"
   },

@@ -4,7 +4,7 @@ import styles from "./Card.module.css";
 import { CardProps } from "./types";
 
 const Card: React.FC<CardProps> = ({
-    pic,
+    pic= "defaulr",
     title,
     para,
     theme = "default",
@@ -15,11 +15,13 @@ const Card: React.FC<CardProps> = ({
 
     return (
         <div className={className} {...props}>
-            {pic && (
+            
+            {pic && pic.length > 0 && (
                 <div className={styles.imgdiv}>
                     <img src={pic} alt={title || "Card image"} />
                 </div>
             )}
+            
             <div className={styles.heading}>
                 <h3>{title}</h3>
             </div>
