@@ -1,768 +1,349 @@
-# UI Library Documentation Site Instructions
+# Mezmer-UI Component Documentation
 
-This document outlines the structure and content required to build a comprehensive documentation site for the Mezmer UI Library. The goal is to provide clear instructions for developers on how to use each component, understand its properties, and see practical examples.
-
-## General Documentation Site Setup
-
-Consider using tools like [Storybook](https://storybook.js.org/), [Docusaurus](https://docusaurus.io/), or a custom React-based documentation solution. These tools offer features like live code examples, prop tables, and easy navigation, which are ideal for UI component libraries.
-
-## Component Documentation Structure
-
-For each component in the `src/components` directory, the documentation should include the following sections:
+Welcome to the documentation for **Mezmer-UI**, a collection of reusable React components designed for building modern and responsive user interfaces.
 
 ---
 
-## 1. Checkbox
+## Table of Contents
 
-### Description
+- [Alert](#alert)
+- [Card](#card)
+- [Checkbox](#checkbox)
+- [Container (ColomnContainer)](#container-colomncontainer)
+- [DropDown](#dropdown)
+- [Input](#input)
+- [Modal](#modal)
+- [PlainButton](#plainbutton)
+- [Radio](#radio)
+- [ShadowButton](#shadowbutton)
+- [Spinner](#spinner)
+- [Tabs](#tabs)
+- [Text](#text)
+- [Tooltip](#tooltip)
 
-A customizable checkbox component that can be used individually or as part of a group. It supports different themes and manages its own checked state.
+---
+
+## Alert
+Displays a brief, important message for the user.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `message` | `string` | - | The message to display. |
+| `type` | `"info" \| "success" \| "error" \| "warning"` | `"info"` | The type of alert (affects styling). |
+| `theme` | `string` | `"default"` | Theme for the component. |
+| `onClose` | `() => void` | - | Callback function when the alert is closed. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
-| `label`   | `string`| The text label displayed next to the checkbox.| `undefined`   |
-| `onChange`| `func`  | Callback function triggered on change.        | `undefined`   |
-| `checked` | `boolean`| Controls the checked state of the checkbox.   | `false`       |
-| `disabled`| `boolean`| Disables the checkbox if true.                | `undefined`   |
-| `name`    | `string`| The name attribute for the input element.     | `undefined`   |
-| `value`   | `string`| The value attribute for the input element.    | `undefined`   |
+### Usage
+```tsx
+import { Alert } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React, { useState } from "react";
-import { Checkbox } from "mezmer-ui"; // Assuming 'mezmer-ui' is your package name
-
-function MyForm() {
-  const [checkedItems, setCheckedItems] = useState({});
-
-  const options = [
-    { label: "Option A", value: "optionA" },
-    { label: "Option B", value: "optionB" },
-    { label: "Option C", value: "optionC" },
-  ];
-
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckedItems({ ...checkedItems, [name]: checked });
-  };
-
-  return (
-    <div>
-      <h3>Select your options:</h3>
-      {options.map((option) => (
-        <Checkbox
-          key={option.value}
-          theme="dark"
-          label={option.label}
-          name={option.value}
-          value={option.value}
-          checked={checkedItems[option.value] || false}
-          onChange={handleCheckboxChange}
-        />
-      ))}
-      <p>Currently selected: {JSON.stringify(checkedItems)}</p>
-    </div>
-  );
-}
+<Alert 
+  message="Operation successful!" 
+  type="success" 
+  onClose={() => console.log('Closed')} 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Checkbox.module.css`) for component-scoped styling.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes, which are defined in `src/styles/tokens.css` and `src/index.css`. These classes control background and text colors.
 
 ---
 
-## 2. Radio
-
-### Description
-
-A customizable radio button component, typically used within a group where only one option can be selected at a time.
+## Card
+A container for content that looks like a card.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `pic` | `string` | - | URL of the image to display. |
+| `title` | `string` | - | Title of the card. |
+| `para` | `string` | - | Content/paragraph text. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
-| `label`   | `string`| The text label displayed next to the radio button.| `undefined`   |
-| `name`    | `string`| **Required.** Groups radio buttons together. Only one radio button with the same `name` can be selected. | `undefined` |
-| `value`   | `string`| The value associated with the radio button.   | `undefined`   |
-| `checked` | `boolean`| Controls the checked state of the radio button. | `false`       |
-| `onChange`| `func`  | Callback function triggered on change.        | `undefined`   |
-| `disabled`| `boolean`| Disables the radio button if true.            | `undefined`   |
+### Usage
+```tsx
+import { Card } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React, { useState } from "react";
-import { Radio } from "mezmer-ui";
-
-function MyRadioGroup() {
-  const [selectedOption, setSelectedOption] = useState("option1");
-
-  const radioOptions = [
-    { label: "First Choice", value: "option1" },
-    { label: "Second Choice", value: "option2" },
-    { label: "Third Choice", value: "option3" },
-  ];
-
-  return (
-    <div>
-      <h3>Choose an option:</h3>
-      {radioOptions.map((option) => (
-        <Radio
-          key={option.value}
-          theme="light"
-          label={option.label}
-          name="myRadioGroup" // All radios in a group must have the same name
-          value={option.value}
-          checked={selectedOption === option.value}
-          onChange={(e) => setSelectedOption(e.target.value)}
-        />
-      ))}
-      <p>Selected: {selectedOption}</p>
-    </div>
-  );
-}
+<Card 
+  title="Card Title" 
+  para="This is a simple card description." 
+  pic="path/to/image.jpg" 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Radio.module.css`).
-- The `theme` prop applies `btn-light` or `btn-dark` classes to the container, influencing overall appearance.
-- Custom styling is applied to hide the native radio input and create a custom visual indicator.
 
 ---
 
-## 3. Alert
-
-### Description
-
-A component used to display important messages to the user, such as success, error, warning, or informational notices.
+## Checkbox
+A standard checkbox input.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `label` | `string` | - | Label for the checkbox. |
+| `theme` | `string` | `"default"` | Theme for the component. |
+| `checked` | `boolean` | `false` | Whether the checkbox is checked. |
+| `disabled` | `boolean` | `false` | Whether the checkbox is disabled. |
+| `onChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | - | Callback when state changes. |
+| `name` | `string` | - | Input name. |
+| `value` | `string` | - | Input value. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `message` | `string`| The content of the alert message.             | `undefined`   |
-| `type`    | `string`| The type of alert: `'info'`, `'success'`, `'warning'`, `'error'`. | `'info'`      |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
-| `onClose` | `func`  | Optional callback for when the alert is closed. If provided, a close button will be rendered. | `undefined` |
+### Usage
+```tsx
+import { Checkbox } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { Alert } from "mezmer-ui";
-
-function AppAlerts() {
-  const handleClose = () => {
-    console.log("Alert closed!");
-  };
-
-  return (
-    <div>
-      <Alert message="This is an informational message." type="info" theme="dark" />
-      <Alert message="Operation completed successfully!" type="success" theme="light" />
-      <Alert message="Warning: Some data might be outdated." type="warning" type="warning" theme="dark" onClose={handleClose} />
-      <Alert message="Error: Failed to load resources." type="error" theme="light" onClose={handleClose} />
-    </div>
-  );
-}
+<Checkbox 
+  label="Accept Terms" 
+  onChange={(e) => console.log(e.target.checked)} 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Alert.module.css`).
-- `type` prop applies specific background and text colors for different alert states (e.g., `.success`, `.error`).
-- The `theme` prop applies `btn-light` or `btn-dark` classes to the container, which can further customize the alert's appearance based on the global theme.
 
 ---
 
-## 4. Tabs
-
-### Description
-
-A component for organizing and displaying content in a tabbed interface, allowing users to switch between different sections.
+## Container (ColomnContainer)
+A layout container that organizes children in rows or columns.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `direction` | `"row" \| "column"` | `"column"` | Flex direction of the container. |
+| `children` | `ReactNode` | - | Content inside the container. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `tabs`    | `array` | An array of objects, each with a `label` (string) and `content` (ReactNode). | `[]`          |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
+### Usage
+```tsx
+import { Container } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { Tabs } from "mezmer-ui";
-
-function AppTabs() {
-  const myTabs = [
-    { label: "Profile", content: <p>User profile information goes here.</p> },
-    { label: "Settings", content: <p>Application settings can be adjusted here.</p> },
-    { label: "Activity", content: <p>Recent user activity log.</p> },
-  ];
-
-  return (
-    <div style={{ width: '500px' }}>
-      <Tabs tabs={myTabs} theme="dark" />
-    </div>
-  );
-}
+<Container direction="row">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Container>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Tabs.module.css`).
-- The `theme` prop applies `btn-light` or `btn-dark` classes to the main tabs container, affecting the background and text colors of the tabs and content area.
-- Active tabs have distinct styling to indicate their selected state.
 
 ---
 
-## 5. Tooltip
-
-### Description
-
-A small, contextual popup that displays information when a user hovers over or focuses on an element.
+## DropDown
+A customizable dropdown menu.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `options` | `DropDownOption[]` | `[]` | Array of `{ value, label }` objects. |
+| `onSelect` | `(option: DropDownOption) => void` | - | Callback when an option is selected. |
+| `selected` | `string` | - | The currently selected value. |
+| `label` | `string` | `"Select"` | Placeholder text when no option is selected. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `children`| `ReactNode`| The element that triggers the tooltip.      | `undefined`   |
-| `content` | `ReactNode`| The content to be displayed inside the tooltip. | `undefined`   |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
+### Usage
+```tsx
+import { DropDown } from 'mezmer-ui';
 
-### Usage Example
+const options = [
+  { value: '1', label: 'Option 1' },
+  { value: '2', label: 'Option 2' },
+];
 
-```jsx
-import React from "react";
-import { Tooltip } from "mezmer-ui";
-
-function AppTooltips() {
-  return (
-    <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', padding: '50px' }}>
-      <Tooltip content="This is a helpful hint!" theme="dark">
-        <button>Hover for info</button>
-      </Tooltip>
-      <Tooltip content={<span>More details here.</span>} theme="light">
-        <span>Focus on me</span>
-      </Tooltip>
-    </div>
-  );
-}
+<DropDown 
+  options={options} 
+  onSelect={(opt) => console.log(opt)} 
+  label="Pick an option" 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Tooltip.module.css`).
-- The `theme` prop applies `btn-light` or `btn-dark` classes to the tooltip's content container, controlling its background and text colors.
-- Positioned absolutely above the trigger element.
 
 ---
 
-## 6. Spinner
-
-### Description
-
-A visual indicator used to show that a process is loading or an action is in progress.
+## Input
+A styled text input field.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `label` | `string` | - | Floating label for the input. |
+| `id` | `string` | - | Unique identifier for the input. |
+| `theme` | `string` | `"default"` | Theme for the component. |
+| ...rest | `InputHTMLAttributes` | - | Standard HTML input attributes. |
 
-| Prop Name | Type    | Description                                   | Default Value |
-| :-------- | :------ | :-------------------------------------------- | :------------ |
-| `size`    | `string`| The size of the spinner: `'sm'`, `'md'`, `'lg'`. | `'md'`        |
-| `theme`   | `string`| Applies a predefined theme ('light', 'dark'). | `'default'`   |
+### Usage
+```tsx
+import { Input } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { Spinner } from "mezmer-ui";
-
-function AppSpinners() {
-  return (
-    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', justifyContent: 'center', padding: '50px' }}>
-      <Spinner size="sm" theme="dark" />
-      <Spinner size="md" theme="light" />
-      <Spinner size="lg" theme="dark" />
-    </div>
-  );
-}
+<Input 
+  id="email" 
+  label="Email Address" 
+  type="email" 
+  onChange={(e) => console.log(e.target.value)} 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Spinner.module.css`).
-- The `size` prop applies specific CSS classes (`.sm`, `.md`, `.lg`) to control the dimensions of the spinner dots.
-- The `theme` prop applies `btn-light` or `btn-dark` classes directly to the individual spinner dots, controlling their background color to ensure visibility against different backgrounds.
 
 ---
 
-## 7. Card
-
-### Description
-
-A versatile card component that can display an image, a title, and a paragraph of text. It supports different themes.
+## Modal
+A modal dialog overlay.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `ReactNode` | - | Content inside the modal. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `pic` | `string` | The URL of the image to display at the top of the card. | `undefined` |
-| `title` | `string` | The main title of the card. | `undefined` |
-| `para` | `string` | The paragraph text content of the card. | `undefined` |
-| `theme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
+### Usage
+```tsx
+import { Modal } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { Card } from "mezmer-ui";
-
-function AppCards() {
-  return (
-    <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', padding: '50px' }}>
-      <Card
-        pic="https://via.placeholder.com/150"
-        title="Card Title One"
-        para="This is the paragraph content for the first card. It can be a bit longer to demonstrate text wrapping."
-        theme="light"
-      />
-      <Card
-        title="Card Title Two"
-        para="This card has no image, demonstrating flexibility in content display."
-        theme="dark"
-      />
-      <Card
-        pic="https://via.placeholder.com/200/0000FF/FFFFFF?text=Image+Two"
-        title="Another Card"
-        para="A short description for another card example."
-        theme="light"
-      />
-    </div>
-  );
-}
+<Modal>
+  <h2>Modal Content</h2>
+  <p>This is inside the modal.</p>
+</Modal>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Card.module.css`) for component-scoped styling.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes, which are defined in `src/styles/tokens.css` and `src/index.css`. These classes control background and text colors.
-- The `imgdiv` class handles image display, ensuring it covers the allocated space and maintains aspect ratio.
-- `heading` and `para` classes style the title and paragraph text respectively.
 
 ---
 
-## 8. ColomnContainer
-
-### Description
-
-A flexible container component that arranges its children in either a column or a row layout.
+## PlainButton
+A basic styled button.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `btntype` | `"primary" \| "secondary"` | `"primary"` | Button style variant. |
+| `btntheme` | `string` | `"default"` | Theme for the component. |
+| `children` | `ReactNode` | - | Button text or content. |
+| ...rest | `ButtonHTMLAttributes` | - | Standard HTML button attributes. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `children` | `ReactNode` | The content to be rendered inside the container. | `undefined` |
-| `direction` | `'row' \| 'column'` | Specifies the flex direction of the container. | `'column'` |
+### Usage
+```tsx
+import { PlainButton } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { ColomnContainer, Card, PlainButton } from "mezmer-ui";
-
-function AppContainers() {
-  return (
-    <ColomnContainer direction="column" style={{ gap: '20px', padding: '20px' }}>
-      <h3>Column Layout Example:</h3>
-      <Card title="Item 1" para="Content for item 1" theme="light" />
-      <Card title="Item 2" para="Content for item 2" theme="dark" />
-      <PlainButton label="Click Me" theme="light" />
-
-      <h3>Row Layout Example:</h3>
-      <ColomnContainer direction="row" style={{ gap: '10px' }}>
-        <PlainButton label="Button A" theme="dark" />
-        <PlainButton label="Button B" theme="light" />
-        <PlainButton label="Button C" theme="dark" />
-      </ColomnContainer>
-    </ColomnContainer>
-  );
-}
+<PlainButton btntype="primary" onClick={() => alert('Clicked!')}>
+  Click Me
+</PlainButton>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Container.module.css`) for component-scoped styling.
-- The `direction` prop dynamically applies either `.Columncontainer` (default) or `.Rowcontainer` class, which sets `flex-direction` to `column` or `row` respectively.
-- Both classes apply a default `gap` of `20px` between children.
 
 ---
 
-## 9. DropDown
-
-### Description
-
-A customizable dropdown component that allows users to select an option from a list. It supports different themes and manages its open/closed state.
+## Radio
+A standard radio input.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `label` | `string` | - | Label for the radio button. |
+| `name` | `string` | - | Name group for the radio buttons. |
+| `value` | `string` | - | Value of the radio button. |
+| `checked` | `boolean` | - | Whether it is selected. |
+| `disabled` | `boolean` | `false` | Whether it is disabled. |
+| `theme` | `string` | `"default"` | Theme for the component. |
+| `onChange` | `(event) => void` | - | Callback when selection changes. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `theme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `options` | `DropDownOption[]` | An array of objects, each with a `value` (string) and `label` (string). | `[]` |
-| `selected` | `string` | The `value` of the currently selected option. | `undefined` |
-| `onSelect` | `(option: DropDownOption) => void` | Callback function triggered when an option is selected. | `undefined` |
-| `label` | `string` | The default text displayed when no option is selected. | `'Select'` |
+### Usage
+```tsx
+import { Radio } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React, { useState } from "react";
-import { DropDown } from "mezmer-ui";
-
-function AppDropDowns() {
-  const [selectedFruit, setSelectedFruit] = useState("");
-  const [selectedColor, setSelectedColor] = useState("blue");
-
-  const fruitOptions = [
-    { value: "apple", label: "Apple" },
-    { value: "banana", label: "Banana" },
-    { value: "orange", label: "Orange" },
-  ];
-
-  const colorOptions = [
-    { value: "red", label: "Red" },
-    { value: "green", label: "Green" },
-    { value: "blue", label: "Blue" },
-    { value: "yellow", label: "Yellow" },
-  ];
-
-  return (
-    <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', padding: '50px' }}>
-      <DropDown
-        theme="light"
-        options={fruitOptions}
-        selected={selectedFruit}
-        onSelect={(option) => setSelectedFruit(option.value)}
-        label="Choose a Fruit"
-      />
-      <DropDown
-        theme="dark"
-        options={colorOptions}
-        selected={selectedColor}
-        onSelect={(option) => setSelectedColor(option.value)}
-        label="Pick a Color"
-      />
-      <p>Selected Fruit: {selectedFruit}</p>
-      <p>Selected Color: {selectedColor}</p>
-    </div>
-  );
-}
+<Radio 
+  label="Option 1" 
+  name="group1" 
+  value="opt1" 
+  onChange={(e) => console.log(e.target.value)} 
+/>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`DropDown.module.css`) for component-scoped styling.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes to the select button and list items, controlling their background and text colors.
-- The dropdown list (`.DropDownList`) has animated `display` and `transform` properties for a smooth open/close effect.
-- Custom scrollbar styling is applied to the dropdown list.
-- The `.DropDownListItemActive` class highlights the currently selected item.
 
 ---
 
-## 10. Input
-
-### Description
-
-A customizable input field component with a floating label animation. It supports different input types and themes.
+## ShadowButton
+A button with a customizable box-shadow effect.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `shadowColor` | `string` | `"#ffffff"` | Color of the shadow. |
+| `spread` | `string` | `"10px"` | Spread distance of the shadow. |
+| `inside` | `boolean` | `false` | If `true`, the shadow is an inset shadow. |
+| `btntype` | `"primary" \| "secondary"` | `"primary"` | Button style variant. |
+| `btntheme` | `string` | `"default"` | Theme for the component. |
+| `children` | `ReactNode` | - | Button content. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `label` | `string` | The label text for the input field. | `undefined` |
-| `id` | `string` | A unique identifier for the input element, used for accessibility. | `undefined` |
-| `theme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `value` | `string` | The current value of the input field. | `undefined` |
-| `onChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | Callback function triggered when the input value changes. | `undefined` |
-| `type` | `string` | The type of the input element (e.g., 'text', 'password', 'email'). | `'text'` |
-| `...rest` | `InputHTMLAttributes<HTMLInputElement>` | Any other standard HTML input attributes. | `undefined` |
+### Usage
+```tsx
+import { ShadowButton } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React, { useState } from "react";
-import { Input } from "mezmer-ui";
-
-function AppInputs() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', padding: '50px', width: '300px' }}>
-      <Input
-        id="name-input"
-        label="Your Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        theme="light"
-      />
-      <Input
-        id="email-input"
-        label="Email Address"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        theme="dark"
-      />
-      <Input
-        id="password-input"
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        theme="light"
-        placeholder="Enter your password"
-      />
-    </div>
-  );
-}
+<ShadowButton shadowColor="rgba(0,0,0,0.5)" spread="20px">
+  Glow Button
+</ShadowButton>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Input.module.css`) for component-scoped styling.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes to both the container and the input element, controlling their background, text, and border colors.
-- The label (`.legandStyle`) animates to a smaller, elevated position (`.legieng`) when the input is focused or has a value, creating a floating label effect.
-- The input field has a subtle border transition on focus.
 
 ---
 
-## 11. Modal
-
-### Description
-
-A customizable modal component that displays content in a dialog box, overlaying the rest of the page. It supports different themes and includes a backdrop for focus.
+## Spinner
+A loading indicator.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the spinner. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `children` | `ReactNode` | The content to be rendered inside the modal. | `undefined` |
-| `theme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `...props` | `HTMLAttributes<HTMLDivElement>` | Any other standard HTML div attributes to be applied to the modal background. | `undefined` |
+### Usage
+```tsx
+import { Spinner } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React, { useState } from "react";
-import { Modal, PlainButton, Text } from "mezmer-ui";
-
-function AppModals() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  return (
-    <div style={{ padding: '50px', textAlign: 'center' }}>
-      <PlainButton label="Open Modal" onClick={openModal} theme="dark" />
-
-      {isModalOpen && (
-        <Modal theme="light" onClick={closeModal}> {/* Clicking backdrop closes modal */}
-          <div style={{ background: 'white', padding: '30px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-            <Text type="h3" theme="dark">Modal Title</Text>
-            <Text type="p" theme="dark">This is the content of the modal.</Text>
-            <PlainButton label="Close" onClick={closeModal} theme="light" style={{ marginTop: '20px' }} />
-          </div>
-        </Modal>
-      )}
-
-      <p style={{ marginTop: '20px' }}>Some content behind the modal.</p>
-    </div>
-  );
-}
+<Spinner size="lg" theme="dark" />
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Modal.module.css`) for component-scoped styling.
-- The modal background (`.madalbg`) covers the entire viewport, centers the modal, and applies a `backdrop-filter` for a blurred effect.
-- The modal content area (`.madal`) is styled with `min-width`, `min-height`, `border-radius`, and uses flexbox for centering its children.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes to the modal content area, controlling its background and text colors.
-- The `.remove` class is used to hide the modal, likely toggled by conditional rendering in the parent component.
 
 ---
 
-## 12. PlainButton
-
-### Description
-
-A simple, customizable button component with primary and secondary variants, supporting different themes.
+## Tabs
+A component for switching between different views.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `tabs` | `Tab[]` | - | Array of `{ label, content }` objects. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `children` | `ReactNode` | The content to be rendered inside the button (e.g., text, icons). | `undefined` |
-| `btntype` | `'primary' \| 'secondary'` | Defines the visual style of the button. `'primary'` for a filled button, `'secondary'` for an outlined (ghost) button. | `'primary'` |
-| `btntheme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `...props` | `ButtonHTMLAttributes<HTMLButtonElement>` | Any other standard HTML button attributes. | `undefined` |
+### Usage
+```tsx
+import { Tabs } from 'mezmer-ui';
 
-### Usage Example
+const tabs = [
+  { label: 'Tab 1', content: <div>Content 1</div> },
+  { label: 'Tab 2', content: <div>Content 2</div> },
+];
 
-```jsx
-import React from "react";
-import { PlainButton } from "mezmer-ui";
-
-function AppPlainButtons() {
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
-
-  return (
-    <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', padding: '50px' }}>
-      <PlainButton btntype="primary" btntheme="light" onClick={handleClick}>
-        Primary Light
-      </PlainButton>
-      <PlainButton btntype="secondary" btntheme="dark" onClick={handleClick}>
-        Secondary Dark
-      </PlainButton>
-      <PlainButton btntype="primary" btntheme="dark" onClick={handleClick}>
-        Primary Dark
-      </PlainButton>
-      <PlainButton btntype="secondary" btntheme="light" onClick={handleClick}>
-        Secondary Light
-      </PlainButton>
-    </div>
-  );
-}
+<Tabs tabs={tabs} />
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`PlainButton.module.css`) for component-scoped styling.
-- The `btntype` prop applies either `.primary` or `.secondary` classes, defining the button's background, text, and border colors.
-- The `btntheme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes, which further customize the button's appearance based on the global theme.
-- Includes hover effects for visual feedback, changing background and text colors.
-- The `.shadow` and `.scale` classes are available for additional styling, though not directly controlled by props in this example, they can be applied via `className` if needed.
 
 ---
 
-## 13. ShadowButton
-
-### Description
-
-A button component that extends `PlainButton` functionality by adding a customizable shadow effect. It supports different button types and themes.
+## Text
+A versatile typography component.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `textType` | `"h1"..."h6" \| "p" \| "span" \| "div"` | `"h1"` | The HTML tag to render. |
+| `theme` | `string` | `"default"` | Theme for the component. |
+| `children` | `ReactNode` | - | Text content. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `children` | `ReactNode` | The content to be rendered inside the button (e.g., text, icons). | `undefined` |
-| `btntype` | `'primary' \| 'secondary'` | Defines the visual style of the button. `'primary'` for a filled button, `'secondary'` for an outlined (ghost) button. | `'primary'` |
-| `btntheme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `shadowColor` | `string` | The color of the shadow. | `'#ffffff'` |
-| `spread` | `string` | The spread radius of the shadow (e.g., '5px', '10px'). | `'10px'` |
-| `inside` | `boolean` | If `true`, applies an `inset` shadow. | `false` |
-| `...props` | `ButtonHTMLAttributes<HTMLButtonElement>` | Any other standard HTML button attributes. | `undefined` |
+### Usage
+```tsx
+import { Text } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { ShadowButton } from "mezmer-ui";
-
-function AppShadowButtons() {
-  const handleClick = () => {
-    alert("Shadow Button clicked!");
-  };
-
-  return (
-    <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', padding: '50px' }}>
-      <ShadowButton btntype="primary" btntheme="light" onClick={handleClick} shadowColor="#007bff" spread="8px">
-        Primary Shadow
-      </ShadowButton>
-      <ShadowButton btntype="secondary" btntheme="dark" onClick={handleClick} shadowColor="#6c757d" spread="5px" inside>
-        Secondary Inset Shadow
-      </ShadowButton>
-      <ShadowButton btntype="primary" btntheme="dark" onClick={handleClick} shadowColor="#28a745" spread="12px">
-        Green Shadow
-      </ShadowButton>
-    </div>
-  );
-}
+<Text textType="h2">This is a heading</Text>
+<Text textType="p">This is a paragraph.</Text>
 ```
-
-### Styling Notes
-
-- Reuses CSS Modules from `PlainButton` (`PlainButton.module.css`) for base button styling (padding, cursor, transitions, border-radius, border).
-- The `btntype` prop applies either `.primary` or `.secondary` classes from `PlainButton.module.css`.
-- The `btntheme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes, which further customize the button's appearance based on the global theme.
-- Shadow effects are applied inline using the `boxShadow` style property, controlled by `shadowColor`, `spread`, and `inside` props.
-- Includes hover effects inherited from `PlainButton` for visual feedback.
 
 ---
 
-## 14. Text
-
-### Description
-
-A versatile text component that can render various HTML heading and paragraph elements (`h1` to `h6`, `p`, `span`, `div`). It supports different themes.
+## Tooltip
+Displays information when hovering over an element.
 
 ### Props
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `content` | `ReactNode` | - | The content to show inside the tooltip. |
+| `children` | `ReactNode` | - | The element that triggers the tooltip. |
+| `theme` | `string` | `"default"` | Theme for the component. |
 
-| Prop Name | Type | Description | Default Value |
-| :-------- | :--- | :---------- | :------------ |
-| `children` | `ReactNode` | The content to be rendered inside the text component. | `undefined` |
-| `theme` | `string` | Applies a predefined theme ('light', 'dark'). | `'default'` |
-| `textType` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' \| 'p' \| 'span' \| 'div'` | Specifies the HTML tag to be used for the text element. | `'h1'` |
-| `...props` | `HTMLAttributes<HTMLElement>` | Any other standard HTML attributes to be applied to the text element. | `undefined` |
+### Usage
+```tsx
+import { Tooltip } from 'mezmer-ui';
 
-### Usage Example
-
-```jsx
-import React from "react";
-import { Text } from "mezmer-ui";
-
-function AppTextExamples() {
-  return (
-    <div style={{ padding: '20px' }}>
-      <Text textType="h1" theme="dark">Heading 1 - Dark Theme</Text>
-      <Text textType="h2" theme="light">Heading 2 - Light Theme</Text>
-      <Text textType="p" theme="dark">
-        This is a paragraph of text rendered with the dark theme.
-        It demonstrates how to use the Text component for general body content.
-      </Text>
-      <Text textType="span" theme="light" style={{ fontWeight: 'bold' }}>
-        This is a bold span in light theme.
-      </Text>
-      <Text textType="div" theme="dark">
-        <div>This is a div containing other elements.</div>
-        <ul>
-          <li>List item 1</li>
-          <li>List item 2</li>
-        </ul>
-      </Text>
-    </div>
-  );
-}
+<Tooltip content="Tooltip message">
+  <button>Hover me</button>
+</Tooltip>
 ```
-
-### Styling Notes
-
-- Uses CSS Modules (`Text.module.css`) for component-scoped styling.
-- The `container` class provides basic padding and flex-wrap properties.
-- The `theme` prop utilizes `ThemeFunctionConponent` to apply `btn-light` or `btn-dark` classes, which control the text color based on the global theme.
-- The `textType` prop dynamically renders the specified HTML tag, allowing for semantic text structuring.
-
----
